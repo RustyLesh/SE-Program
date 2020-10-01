@@ -8,8 +8,6 @@ app.get('/', function (request, response) {
     response.render('index.html');
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 3000, () => console.log('Server started'));
 
-app.listen(port, function () {
-    console.log('server is running');
-});
+
