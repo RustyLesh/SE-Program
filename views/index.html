@@ -19,8 +19,13 @@
         <option value="">Author</option>
         <option value="">Title</option>
       </select>
-      <input type="text" />
-      <button><i class="fas fa-search"></i></button>
+      <form action="./index.html" method="POST">
+        <div>
+          <input type="text" value="search">
+          <!-- <button><i class="fas fa-search"></i></button> -->
+          <input type="submit" value="Search" class="btn btn-default">
+        </div>
+      </form>
     </div>
   </header>
 
@@ -42,10 +47,36 @@
       <div>
         <span>Option1</span>
         <input type="checkbox" />
-        <p>sadsadas</p>
+
       </div>
     </div>
   </section>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Number</th>
+          <th>Author</th>
+          <th>Year</th>
+          <th>Reference</th>
+          <th>Stars</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{ each datas }}
+        <tr>
+          <td>{{ $value.Number }}</td>
+          <td>{{ $value.Author }}</td>
+          <td>{{ $value.Year }}</td>
+          <td>{{ $value.Reference }}</td>
+          <td>{{ $value.Stars }}</td>
+        </tr>
+        {{ /each }}
+
+      </tbody>
+    </table>
+  </div>
 </body>
 
 </html>
