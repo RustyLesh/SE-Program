@@ -14,7 +14,7 @@ body {
 
 
 /*---------------Header---------------*/
-header {
+/* header {
     display: flex;
     height: auto;
     margin: 2rem  2rem 5rem 2rem;
@@ -40,10 +40,10 @@ header input {
 
 header i {
     width: 4rem;
-}
+} */
 
 /*---------------Section-hero---------------*/
-
+/* 
 .section-hero .filter {
     display: flex;
     flex-direction: column;
@@ -70,4 +70,24 @@ header i {
 
 .section-hero input {
     transform: scale(1.5);
+} */
+
+.section-hero div {
+    text-align: center;
+    margin-top: 30%;
+}
+
+.section-hero div input {
+    width: 30%;
+    height: 4vw;
+}
+
+.section-hero div input textarea:focus, input:focus {
+    outline-color: orange;
+}
+
+.section-hero div button {
+    width: 6rem;
+    height: 4vw;
+    background-color: white;
 }
