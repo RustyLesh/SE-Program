@@ -1,8 +1,12 @@
 //Requirement
 const express = require("express");
 const app = express();
+var url = require('url');
 const MongoClient = require("mongodb").MongoClient;
-
+var bodyParser = require('body-parser');
+const { json } = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 //Server Launch fucntion
 function init() {
   app.engine("html", require("express-art-template"));
@@ -12,6 +16,8 @@ function init() {
 
   app.get("/", function (request, response) {
     response.render("index.html");
+
+
   });
   app.listen(process.env.PORT || 8000, () => console.log("Server started"));
 }
@@ -69,25 +75,37 @@ app.post("/posted", function (req, res) {
   if (err) return console.log("error...");
 });
 //------------------------
-// app.get("/search", function (req, res) {
-//   var keyword = req.body.keyword;
-//   database.post
-//     .find({ title: "Test 1" })
-//     .toArray(function (err, result) {
-//       if (err) {
-//         return console.log(err);
-//       }
-//       console.log(res);
-//       res.send(result);
-//     });
-// });
+app.post("/search", function (req, res) {
+  // var parseObj = url.parse(req.url, true);
+  // name = JSON.stringify(req.body.Keyword);
+  // dataa = JSON.stringify(req.body, null, 2);
+  database
+    .collection("post")
+    //   //   .find()
+    // database.post
+
+    .find({ 'Name': req.body.Keyword.toString() })
+    .toArray(function (err, result) {
+      if (err) {
+        return console.log(err);
+      }
+      // result = json.parse(result);
+      // res.render('index.html', {
+      //   datas: result  
+      // });
+      // var comment = parseObj.query;
+      // console.log(dataa);
+      console.log(result);
+      res.send(result);
+    });
+});
 
 // database.post.find({ Name: "Steven Yoo" }, function (error, data) {
 //   console.log(data);
 //   res.render("home", { ses: req.session.ide, results: data });
 // });
 
-app.post("/search", function(req, res) {
-  database.collection("post").find({"$text": {"$search": req.body.keyword}})
-})
+// app.post("/search", function (req, res) {
+//   database.collection("post").find({ "$text": { "$search": req.body.keyword } })
+// })
 

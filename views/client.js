@@ -1,6 +1,6 @@
 const btnsearch = document.getElementById("btnsearch");
 const btnpush = document.getElementById("upload");
-
+const content = document.getElementById("content");
 // btnsearch.addEventListener("click", function () {
 //   console.log("Button Clicked!");
 //   fetch("/clicks", { method: "post" })
@@ -52,13 +52,21 @@ btnsearch.addEventListener("click", function () {
 
 btnsearch.addEventListener("click", function () {
   console.log("btn clicked");
-  fetch("/search", { method: "GET" })
+  fetch("/search", { method: "Get" })
     .then(function (response) {
       if (response.ok) return response.json();
       throw new Error("Request failed.");
     })
     .then(function (data) {
-      console.log(data);
+      // console.log(data);
+      list = data.slice(0);
+      // console.log(typeof data);
+      for (var i = 0; i < list.length; i++) {
+        console.log(list[i]);
+
+      }
+      // list = list.toString();
+      // content.innerHTML = list;
     })
     .catch(function (error) {
       console.log("catch error");
